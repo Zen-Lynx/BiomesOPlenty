@@ -34,7 +34,7 @@ version = config.mod_version
 archivesBaseName = "BiomesOPlenty"
 
 // add some stuff to the version
-version = "${config.minecraft_version}-${config.mod_version}.${System.getenv().BUILD_NUMBER}"
+version = "${config.minecraft_version}-${config.mod_version}.ZLFIX-100"
 // set this for the version.properties file, or was this broken on purpose?
 config.build_number = (System.getenv().BUILD_NUMBER) ? System.getenv().BUILD_NUMBER : ""
 
