@@ -53,8 +53,6 @@ import static biomesoplenty.api.item.BOPItems.white_dye;
 
 import biomesoplenty.api.sound.BOPSounds;
 import biomesoplenty.common.command.BOPCommand;
-import biomesoplenty.common.entities.item.EntityBOPBoat;
-import biomesoplenty.common.item.ItemBOPBoat;
 import biomesoplenty.common.item.ItemBOPFood;
 import biomesoplenty.common.item.ItemBOPRecord;
 import biomesoplenty.common.item.ItemBiomeEssence;
@@ -87,24 +85,7 @@ public class ModItems
     {
         jar_filled = registerItem(new ItemJarFilled(), "jar_filled");
         jar_empty = registerItem(new ItemJarEmpty(), "jar_empty");
-        
-    	boat_sacred_oak = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.SACRED_OAK), "boat_sacred_oak");
-    	boat_cherry = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.CHERRY), "boat_cherry");
-    	boat_umbran = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.UMBRAN), "boat_umbran");
-    	boat_fir = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.FIR), "boat_fir");
-    	boat_ethereal = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.ETHEREAL), "boat_ethereal");
-    	boat_magic = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.MAGIC), "boat_magic");
-    	boat_mangrove = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.MANGROVE), "boat_mangrove");
-    	boat_palm = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.PALM), "boat_palm");
-    	boat_redwood = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.REDWOOD), "boat_redwood");
-    	boat_willow = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.WILLOW), "boat_willow");
-    	boat_pine = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.PINE), "boat_pine");
-    	boat_hellbark = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.HELLBARK), "boat_hellbark");
-    	boat_jacaranda = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.JACARANDA), "boat_jacaranda");
-    	boat_mahogany = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.MAHOGANY), "boat_mahogany");
-    	boat_ebony = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.EBONY), "boat_ebony");
-    	boat_eucalyptus = registerItem(new ItemBOPBoat(EntityBOPBoat.Type.EUCALYPTUS), "boat_eucalyptus");
-        
+
         biome_finder = registerItem(new ItemBiomeFinder(), "biome_finder");
         
         record_wanderer = registerItem(new ItemBOPRecord("wanderer", BOPSounds.records_wanderer), "record_wanderer");

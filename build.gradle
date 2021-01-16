@@ -67,10 +67,10 @@ processResources {
 
         // replaces
         expand ([
-            'modid': project.archivesBaseName,
-            'mod_version': project.config.mod_version,
-            'minecraft_version': project.config.minecraft_version,
-            'build_number': project.config.build_number
+                'modid': project.archivesBaseName,
+                'mod_version': project.config.mod_version,
+                'minecraft_version': project.config.minecraft_version,
+                'build_number': project.config.build_number
         ])
     }
 
@@ -78,21 +78,6 @@ processResources {
         exclude '**/*.info'
         exclude '**/*.properties'
     }
-}
-
-
-import groovy.io.FileType
-
-task changelog(type: JenkinsChangelog) {
-    outputs.upToDateWhen { false } // Refresh changelog for every build
-    def buildNumber = "${System.getenv().BUILD_NUMBER}"
-
-    serverRoot = 'http://ci.jenkins.minecraftforge.net/'
-    jobName = 'BiomesOPlenty'
-    authName = project.getProperty('forgeJenkinsUsername')
-    authPassword = project.getProperty('forgeJenkinsPassword')
-    targetBuild = buildNumber.toString()
-    output = 'build/libs/' + project.getName() + '-' + project.version + '-changelog.txt'
 }
 
 uploadArchives.dependsOn 'changelog'
@@ -132,13 +117,13 @@ task listOutputs << {
     def list = []
 
     def dir = new File("build/libs/")
-    
+
     if (dir.exists()) {
         dir.eachFileRecurse (FileType.FILES) { file ->
             //Add each file to the list
             list << file
         }
-    
+
         //Print the names of all of the output files
         list.each {
             println it.getName()
@@ -150,35 +135,25 @@ task listOutputs << {
 tasks.build.finalizedBy('listOutputs')
 
 artifacts {
-    archives changelog.output
     archives sourcesJar
     archives deobfJar
     archives apiJar
 }
 
-curseforge {
-    apiKey = project.getProperty('curseApiKey')
-    project {
-        id = '220318'
-        changelog = file('build/libs/' + project.getName() + '-' + project.version + '-changelog.txt')
-        releaseType = 'beta'
-    }
-}
-
 uploadArchives {
     repositories {
         mavenDeployer {
-			if (project.hasProperty('forgeMavenPassword'))
-			{
-				repository(url: "https://files.minecraftforge.net/maven/manage/upload") {
-					authentication(userName: project.getProperty('forgeMavenUsername'), password: project.getProperty('forgeMavenPassword'))
-				}
-			}
-			else
-			{
-				// local repo folder. Might wanna juset use  gradle install   if you wanans end it to maven-local
-				repository(url: 'file://localhost/' + project.file('repo').getAbsolutePath())
-			}
+            if (project.hasProperty('forgeMavenPassword'))
+            {
+                repository(url: "https://files.minecraftforge.net/maven/manage/upload") {
+                    authentication(userName: project.getProperty('forgeMavenUsername'), password: project.getProperty('forgeMavenPassword'))
+                }
+            }
+            else
+            {
+                // local repo folder. Might wanna juset use  gradle install   if you wanans end it to maven-local
+                repository(url: 'file://localhost/' + project.file('repo').getAbsolutePath())
+            }
 
             pom {
                 groupId = project.group
@@ -189,18 +164,18 @@ uploadArchives {
                     packaging 'jar'
                     description 'Biomes O Plenty'
                     url 'https://github.com/Glitchfiend/BiomesOPlenty'
-                
+
                     scm {
                         url 'https://github.com/Glitchfiend/BiomesOPlenty'
                         connection 'scm:git:git://github.com/Glitchfiend/BiomesOPlenty.git'
                         developerConnection 'scm:git:git@github.com:Glitchfiend/BiomesOPlenty.git'
                     }
-                
+
                     issueManagement {
                         system 'github'
                         url 'https://github.com/Glitchfiend/BiomesOPlenty/issues'
                     }
-                
+
                     licenses {
                         license {
                             name 'Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International Public License'
@@ -208,7 +183,7 @@ uploadArchives {
                             distribution 'repo'
                         }
                     }
-                
+
                     developers {
                         developer {
                             id 'Adubbz'
